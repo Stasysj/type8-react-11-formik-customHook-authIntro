@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-// ir atvazduoti saraso pavidalu
+// panaudoti useResource
+// ir atvazduoti ul saraso pavidalu
 
 function AboutPage() {
   const [userssData, setUserssData] = useState([]);

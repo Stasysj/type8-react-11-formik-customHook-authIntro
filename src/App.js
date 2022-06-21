@@ -12,11 +12,15 @@ function App() {
       <div className='App'>
         <Header />
         <Switch>
+          {/* negeneruoti route /about jei nesam prisilogine */}
           <Route path='/about'>
             <AboutPage />
           </Route>
           <Route exact path='/login'>
             <LoginPage />
+          </Route>
+          <Route path='*'>
+            <h2>404 Not found</h2>
           </Route>
         </Switch>
       </div>

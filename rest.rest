@@ -6,4 +6,12 @@ Content-Type: application/json
     "password": "asdasdasdasd"
 }
 ### 
+POST https://reqres.in/api/register
+Content-Type: application/json
+
+{     
+    "email": "eve.holt@reqres.in",
+    "password": "sdsd"
+}
+### 
 GET https://reqres.in/api/login

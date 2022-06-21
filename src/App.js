@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router';
 import './App.css';
 import AboutPage from './pages/About/AboutPage';
-import HomePage from './pages/Home/HomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -10,8 +10,8 @@ function App() {
         <Route path='/about'>
           <AboutPage />
         </Route>
-        <Route exact path='/'>
-          <HomePage />
+        <Route exact path='/login'>
+          <LoginPage />
         </Route>
       </Switch>
     </div>

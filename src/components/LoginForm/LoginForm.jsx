@@ -7,12 +7,15 @@ const initValues = {
 function LoginForm() {
   const formik = useFormik({
     initialValues: initValues,
+    onSubmit: (values) => {
+      console.log('submiting values ===', values);
+    },
   });
 
-  console.log('formik.values ===', formik.values);
+  // console.log('formik.values ===', formik.values);
 
   return (
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <input
         onChange={formik.handleChange}
         value={formik.values.email}

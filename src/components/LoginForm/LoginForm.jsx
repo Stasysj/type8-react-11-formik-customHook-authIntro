@@ -2,12 +2,15 @@ import css from './LoginForm.module.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { myFetch } from '../../utils';
+import { useContext } from 'react';
+import { AuthContext } from '../../store/authContext';
 
 const initValues = {
   email: '',
   password: '',
 };
 function LoginForm() {
+  const { login } = useContext(AuthContext);
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
@@ -30,6 +33,7 @@ function LoginForm() {
       }
       // klaidos nera ir turim token
       // login() is kontexto ir paduosim token
+      login(result.token);
       console.log('result ===', result);
     },
   });

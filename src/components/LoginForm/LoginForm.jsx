@@ -22,8 +22,14 @@ function LoginForm() {
     onSubmit: async (values) => {
       // fetch or axios https://reqres.in/api/login
       // ir iskonsolinti atsakyma
-      console.log('submiting values ===', values);
+      // console.log('submiting values ===', values);
       const result = await myFetch('https://reqres.in/api/login', 'POST', values);
+      if (!result.token) {
+        console.log('klaida');
+        return;
+      }
+      // klaidos nera ir turim token
+      // login() is kontexto ir paduosim token
       console.log('result ===', result);
     },
   });

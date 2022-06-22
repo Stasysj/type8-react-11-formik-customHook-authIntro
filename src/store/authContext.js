@@ -1,23 +1,25 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const AuthContext = createContext({
   login() {},
   logout() {},
-  token: '',
+  isUserLoggedIn: '',
 });
 
 AuthContext.displayName = 'AuthContext';
 
 function AuthProvider(props) {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token-prot'));
   // infered value / calculated value
   const isUserLoggedIn = !!token;
-
+  // console.log('isUserLoggedIn ===', isUserLoggedIn);
   function login(userToken) {
     setToken(userToken);
+    localStorage.setItem('token-prot', userToken);
   }
   function logout() {
     setToken(null);
+    localStorage.removeItem('token-prot');
   }
 
   const ctx = {
@@ -29,3 +31,8 @@ function AuthProvider(props) {
 }
 
 export default AuthProvider;
+
+// custom hook for context
+export function useAuthCtx() {
+  return useContext(AuthContext);
+}

@@ -9,18 +9,13 @@ const initValues = {
   email: '',
   password: '',
 };
-function LoginForm() {
+function LoginForm(props) {
   const { login } = useContext(AuthContext);
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Patikrinkite savo email')
-        .required(),
-      password: Yup.string()
-        .min(4, 'Maziausiai 4 simboliai')
-        .max(7)
-        .required(),
+      email: Yup.string().email('Patikrinkite savo email').required(),
+      password: Yup.string().min(4, 'Maziausiai 4 simboliai').max(7).required(),
     }),
     onSubmit: async (values) => {
       // fetch or axios https://reqres.in/api/login
@@ -34,13 +29,15 @@ function LoginForm() {
       // klaidos nera ir turim token
       // login() is kontexto ir paduosim token
       login(result.token);
+      // ------------------------------redirectui---------------
+      props.onSuccessLogin();
       console.log('result ===', result);
     },
   });
 
   console.log('formik.touched ===', formik.touched);
   // console.log('formik.values ===', formik.values);
-
+  // console.log('props', props.onSuccessLogin);
   return (
     <form onSubmit={formik.handleSubmit}>
       <input
@@ -59,9 +56,7 @@ function LoginForm() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
-        className={
-          formik.touched.password && formik.errors.password ? css.errorInput : ''
-        }
+        className={formik.touched.password && formik.errors.password ? css.errorInput : ''}
         name='password'
         type='password'
         placeholder='Your password'

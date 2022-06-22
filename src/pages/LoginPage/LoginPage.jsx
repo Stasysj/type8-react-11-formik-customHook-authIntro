@@ -1,10 +1,14 @@
 // import css from './LoginPage.module.css'
 
+import { Redirect } from 'react-router';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 function LoginPage(props) {
   function handleSuccessLogin() {
     // TODO: redirect to about
+    console.log('Redirectinam');
+
+    console.log('LoginPage props', props);
   }
 
   return (
